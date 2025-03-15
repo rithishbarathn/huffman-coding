@@ -3,16 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huffman Coding Game</title>
-    
-    <!-- Linking styles.css -->
+    <title>Huffman Coding</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function showContent(type) {
+            let content = document.getElementById('content');
+            if (type === 'game') {
+                content.innerHTML = "<h2>Start the Game</h2><p>Game will be implemented here.</p>";
+            } else if (type === 'about') {
+                content.innerHTML = "<h2>About Huffman Coding</h2><p>Huffman coding is a lossless data compression algorithm.</p><h3>Example</h3><p>Example of Huffman encoding will go here.</p><h3>Advantages</h3><ul><li>Efficient compression</li><li>Lossless encoding</li></ul><h3>Disadvantages</h3><ul><li>Requires preprocessing</li><li>Complexity in implementation</li></ul>";
+            } else if (type === 'complexity') {
+                content.innerHTML = "<h2>Time Complexity Analysis</h2><p>Building a Huffman tree takes O(n log n) time.</p>";
+            }
+        }
+
+        function showApplications() {
+            let content = document.getElementById('content');
+            content.innerHTML = "<h2>Real-Time Applications</h2>" +
+                "<button onclick=\"showSubApplication('text')\">Text-Based Compression</button>" +
+                "<button onclick=\"showSubApplication('image')\">Image Compression</button>";
+        }
+
+        function showSubApplication(type) {
+            let content = document.getElementById('content');
+            if (type === 'text') {
+                content.innerHTML = "<h2>Text-Based Compression</h2><p>File Compression (ZIP, GZIP), Text Transmission (SMS, Emails).</p>";
+            } else if (type === 'image') {
+                content.innerHTML = "<h2>Image Compression</h2><p>JPEG Image Compression, MP3 Audio Compression, Video Encoding (MPEG, H.264).</p>";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
-        <h1>🎮 Huffman Coding Game 🎮</h1>
-        <p>Experience the magic of Huffman coding with this interactive game!</p>
-        <button class="start-button">Start Game</button>
+        <h1>Huffman Coding Algorithm</h1>
+        <p>Explore Huffman Coding, a popular lossless data compression technique.</p>
+        
+        <button onclick="showContent('game')">Start Game</button>
+        <button onclick="showContent('about')">About Huffman Coding</button>
+        <button onclick="showContent('complexity')">Time Complexity Analysis</button>
+        <button onmouseover="showApplications()">Real-Time Applications</button>
+
+        <div id="content" class="content-box"></div>
     </div>
 </body>
 </html>
