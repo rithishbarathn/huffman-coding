@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -14,6 +15,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+/* Buttons */
 button {
     padding: 10px 20px;
     margin: 10px;
@@ -30,10 +32,12 @@ button:hover {
     background-color: #ddd;
 }
 
+/* Hidden Sections */
 .hidden {
     display: none;
 }
 
+/* Rainbow Text Effect */
 .rainbow-text {
     background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
     -webkit-background-clip: text;
