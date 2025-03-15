@@ -1,48 +1,41 @@
 body {
-    font-family: 'Press Start 2P', cursive;
-    background: linear-gradient(45deg, #ff6b6b, #6b5bff, #ffcb6b);
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
+    font-family: Arial, sans-serif;
     text-align: center;
+    background: linear-gradient(90deg, #ff4b4b, #ffac41, #fdfd96, #77dd77, #779ecb, #b19cd9);
     color: white;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
 .container {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
-    max-width: 800px;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-h1.rainbow {
-    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+.hidden {
+    display: none;
+}
+
+.rainbow-text {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.topic-red { color: #ff4b5c; }
-.topic-orange { color: #ff9f43; }
-.topic-yellow { color: #feca57; }
-.topic-green { color: #1dd1a1; }
-
-.animated-step {
-    animation: fadeIn 2s ease-in-out infinite alternate;
-}
-
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
 }
