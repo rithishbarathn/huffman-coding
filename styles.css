@@ -1,50 +1,48 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(45deg, #ff6b6b, #6b5bff, #ffcb6b);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
     text-align: center;
-    padding: 20px;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
     max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
 }
 
-h1 {
-    color: #333;
+h1.rainbow {
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    margin: 8px;
-    cursor: pointer;
-    border-radius: 8px;
-    font-size: 18px;
-    transition: background 0.3s, transform 0.2s;
+.topic-red { color: #ff4b5c; }
+.topic-orange { color: #ff9f43; }
+.topic-yellow { color: #feca57; }
+.topic-green { color: #1dd1a1; }
+
+.animated-step {
+    animation: fadeIn 2s ease-in-out infinite alternate;
 }
 
-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-.content-box {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background: #fff;
-    border-radius: 8px;
-    text-align: left;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.hidden {
-    display: none;
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
