@@ -75,5 +75,20 @@
             <p>It is used in lossless image compression formats like PNG.</p>
         </div>
     </div>
+    
+    <script>
+        function generateHuffmanTree() {
+            let input = document.getElementById('inputString').value;
+            if (input.length === 0) {
+                alert('Please enter a string.');
+                return;
+            }
+            
+            let tree = buildHuffmanTree(input);
+            let explanation = generateExplanation(tree);
+            document.getElementById('treeExplanation').innerHTML = explanation;
+            drawHuffmanTree(tree);
+        }
+    </script>
 </body>
 </html>
