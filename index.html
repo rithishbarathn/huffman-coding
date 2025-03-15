@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huffman Coding</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
         <h1 class="rainbow-text">Huffman Coding Algorithm</h1>
-        <p>Explore Huffman Coding, a popular lossless data compression technique.</p>
+        <p class="intro-text">Explore Huffman Coding, a popular lossless data compression technique.</p>
 
-        <div class="buttons">
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
             <button onclick="showSection('game')">Start Game</button>
             <button onclick="showSection('about')">About Huffman Coding</button>
             <button onclick="showSection('time-complexity')">Time Complexity Analysis</button>
@@ -21,15 +22,18 @@
 
         <!-- Start Game Section -->
         <div id="game" class="content-section hidden">
-            <h2>Game Section</h2>
-            <p>The game will go here.</p>
+            <h2 class="rainbow-text">Huffman Coding Game</h2>
+            <p>Enter a string below to generate Huffman Codes:</p>
+            <input type="text" id="userInput" placeholder="Enter text here">
+            <button onclick="startHuffmanGame()">Generate Huffman Codes</button>
+            <div id="huffmanOutput"></div>
         </div>
 
-        <!-- About Huffman Coding Section -->
+        <!-- About Huffman Coding -->
         <div id="about" class="content-section hidden">
             <h2 class="rainbow-text">About Huffman Coding</h2>
-            <p>Huffman coding is a lossless data compression algorithm that assigns variable-length codes to input characters. The lengths of these codes are based on character frequencies.</p>
-            
+            <p>Huffman coding is a lossless data compression algorithm. It assigns variable-length codes to input characters based on their frequencies. More frequent characters receive shorter codes, while less frequent ones receive longer codes.</p>
+
             <h3>Example</h3>
             <p>Consider the following character frequencies:</p>
             <ul>
@@ -43,64 +47,51 @@
             <p>The Huffman Tree is built as follows:</p>
             <ol>
                 <li>Combine the two lowest frequency nodes (A and B) into a new node.</li>
-                <li>Repeat until one node remains (the root of the tree).</li>
+                <li>Repeat the process until only one node remains (the root of the tree).</li>
                 <li>Assign binary codes (0,1) to traverse the tree.</li>
             </ol>
-            <h3>Final Huffman Codes:</h3>
-            <ul>
-                <li>A: 1100</li>
-                <li>B: 1101</li>
-                <li>C: 100</li>
-                <li>D: 101</li>
-                <li>E: 111</li>
-                <li>F: 0</li>
-            </ul>
 
             <h3>Advantages</h3>
             <ul>
-                <li>Efficient compression: Reduces file size.</li>
-                <li>Lossless: No data is lost.</li>
+                <li>Efficient compression: Reduces file size significantly.</li>
+                <li>Lossless compression: No data is lost.</li>
                 <li>Widely used in text and image compression.</li>
             </ul>
 
             <h3>Disadvantages</h3>
             <ul>
-                <li>Computational overhead: Tree construction takes time.</li>
-                <li>Decoding complexity: Requires Huffman tree traversal.</li>
-                <li>Not efficient for small datasets.</li>
+                <li>Computational overhead: Tree construction can be time-consuming.</li>
+                <li>Decoding complexity: Requires traversal of the Huffman tree.</li>
+                <li>Not suitable for small datasets: Works best with large input files.</li>
             </ul>
         </div>
 
-        <!-- Time Complexity Section -->
+        <!-- Time Complexity Analysis -->
         <div id="time-complexity" class="content-section hidden">
             <h2 class="rainbow-text">Time Complexity Analysis</h2>
-            <p>Time complexities for Huffman coding:</p>
             <ul>
-                <li>Best Case: O(n log n)</li>
-                <li>Average Case: O(n log n)</li>
-                <li>Worst Case: O(n log n)</li>
+                <li><strong>Best Case:</strong> O(n log n) - When characters have uniform frequency.</li>
+                <li><strong>Average Case:</strong> O(n log n) - Constructing Huffman Tree takes priority queue operations.</li>
+                <li><strong>Worst Case:</strong> O(n log n) - When all characters have different frequencies.</li>
             </ul>
         </div>
 
-        <!-- Real-Time Applications Section -->
+        <!-- Real-Time Applications -->
         <div id="real-time" class="content-section hidden">
             <h2 class="rainbow-text">Real-Time Applications</h2>
-            <p>Huffman coding is widely used in data compression.</p>
-            <button onclick="showSubOptions()">Show Applications</button>
-            
-            <div id="sub-options" class="hidden">
-                <button onclick="showSection('text-compression')">Text-Based Compression</button>
-                <button onclick="showSection('image-compression')">Image Compression</button>
-            </div>
+            <button onclick="showSection('text-compression')">Text-Based Compression</button>
+            <button onclick="showSection('image-compression')">Image Compression</button>
 
+            <!-- Text-Based Compression -->
             <div id="text-compression" class="content-section hidden">
                 <h3>Text-Based Compression</h3>
-                <p>Used in file compression like ZIP and GZIP.</p>
+                <p>Huffman coding is widely used in file compression formats like ZIP and GZIP.</p>
             </div>
 
+            <!-- Image Compression -->
             <div id="image-compression" class="content-section hidden">
                 <h3>Image Compression</h3>
-                <p>Used in JPEG and PNG image formats.</p>
+                <p>Huffman coding is used in JPEG image compression to encode pixel data efficiently.</p>
             </div>
         </div>
     </div>
