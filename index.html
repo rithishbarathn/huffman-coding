@@ -1,50 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huffman Coding</title>
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        function showContent(type) {
-            let content = document.getElementById('content');
-            if (type === 'game') {
-                content.innerHTML = "<h2>Start the Game</h2><p>Game will be implemented here.</p>";
-            } else if (type === 'about') {
-                content.innerHTML = "<h2>About Huffman Coding</h2><p>Huffman coding is a lossless data compression algorithm.</p><h3>Example</h3><p>Example of Huffman encoding will go here.</p><h3>Advantages</h3><ul><li>Efficient compression</li><li>Lossless encoding</li></ul><h3>Disadvantages</h3><ul><li>Requires preprocessing</li><li>Complexity in implementation</li></ul>";
-            } else if (type === 'complexity') {
-                content.innerHTML = "<h2>Time Complexity Analysis</h2><p>Building a Huffman tree takes O(n log n) time.</p>";
-            }
-        }
-
-        function showApplications() {
-            let content = document.getElementById('content');
-            content.innerHTML = "<h2>Real-Time Applications</h2>" +
-                "<button onclick=\"showSubApplication('text')\">Text-Based Compression</button>" +
-                "<button onclick=\"showSubApplication('image')\">Image Compression</button>";
-        }
-
-        function showSubApplication(type) {
-            let content = document.getElementById('content');
-            if (type === 'text') {
-                content.innerHTML = "<h2>Text-Based Compression</h2><p>File Compression (ZIP, GZIP), Text Transmission (SMS, Emails).</p>";
-            } else if (type === 'image') {
-                content.innerHTML = "<h2>Image Compression</h2><p>JPEG Image Compression, MP3 Audio Compression, Video Encoding (MPEG, H.264).</p>";
-            }
-        }
-    </script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Huffman Coding Algorithm</h1>
-        <p>Explore Huffman Coding, a popular lossless data compression technique.</p>
+        <h1>Huffman Coding</h1>
         
-        <button onclick="showContent('game')">Start Game</button>
-        <button onclick="showContent('about')">About Huffman Coding</button>
-        <button onclick="showContent('complexity')">Time Complexity Analysis</button>
-        <button onmouseover="showApplications()">Real-Time Applications</button>
+        <h2>About Huffman Coding</h2>
+        <p>Huffman coding is a lossless data compression algorithm. The idea is to assign variable-length codes to input characters, lengths of the assigned codes are based on the frequencies of corresponding characters.</p>
+        <p>Huffman Coding is a lossless data compression algorithm that uses variable-length codes for encoding characters, ensuring that more frequent characters use shorter codes and less frequent ones use longer codes. It is a greedy algorithm that builds an optimal prefix tree for encoding.</p>
+        
+        <h2>Example</h2>
+        <div class="example">
+            <p>Consider the following character frequencies:</p>
+            <ul>
+                <li>A: 5</li>
+                <li>B: 9</li>
+                <li>C: 12</li>
+                <li>D: 13</li>
+                <li>E: 16</li>
+                <li>F: 45</li>
+            </ul>
+            <p>The Huffman Tree is built as follows:</p>
+            <ol>
+                <li>Combine the two lowest frequency nodes (A and B) into a new node.</li>
+                <li>Repeat the process until only one node remains (the root of the tree).</li>
+                <li>Assign binary codes (0,1) to traverse the tree.</li>
+            </ol>
+            <p class="animated-step">Final Huffman Codes:</p>
+            <ul>
+                <li>A: 1100</li>
+                <li>B: 1101</li>
+                <li>C: 100</li>
+                <li>D: 101</li>
+                <li>E: 111</li>
+                <li>F: 0</li>
+            </ul>
+        </div>
+        
+        <h2>Advantages</h2>
+        <div class="advantages">
+            <ul>
+                <li>Efficient compression: Reduces file size significantly.</li>
+                <li>Lossless compression: No data is lost.</li>
+                <li>Widely used in text and image compression.</li>
+            </ul>
+        </div>
+        
+        <h2>Disadvantages</h2>
+        <div class="disadvantages">
+            <ul>
+                <li>Computational overhead: Tree construction can be time-consuming.</li>
+                <li>Decoding complexity: Requires traversal of the Huffman tree.</li>
+                <li>Not suitable for small datasets: Works best with large input files.</li>
+            </ul>
+        </div>
 
-        <div id="content" class="content-box"></div>
+        <h2>Time Complexity Analysis</h2>
+        <div class="time-complexity">
+            <ul>
+                <li>Best Case: O(n) - When input characters have equal frequencies and an optimal balanced tree is formed.</li>
+                <li>Average Case: O(n log n) - Due to the priority queue operations while building the Huffman tree.</li>
+                <li>Worst Case: O(n log n) - When input characters have highly skewed frequencies requiring multiple merges.</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
