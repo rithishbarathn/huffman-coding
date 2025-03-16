@@ -1,71 +1,76 @@
-function showPage(pageId) {
-    let pages = document.querySelectorAll('.page');
-    pages.forEach(page => page.style.display = 'none');
-    document.getElementById(pageId).style.display = 'block';
+function showSection(sectionId) {
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.add('hidden');
+    });
+    document.getElementById(sectionId).classList.remove('hidden');
 }
 
-function showSubPage(subPageId) {
-    document.getElementById('textCompression').style.display = 'none';
-    document.getElementById('imageCompression').style.display = 'none';
-    document.getElementById(subPageId).style.display = 'block';
-}
-
-// Huffman Tree Visualization
-function buildHuffmanTree(input) {
-    let freqMap = {};
-    for (let char of input) {
-        freqMap[char] = (freqMap[char] || 0) + 1;
+// Huffman Node Class
+class HuffmanNode {
+    constructor(char, freq) {
+        this.char = char;
+        this.freq = freq;
+        this.left = null;
+        this.right = null;
     }
+}
 
-    let nodes = Object.keys(freqMap).map(char => ({ char, freq: freqMap[char], left: null, right: null }));
+// Function to Build Huffman Tree
+function buildHuffmanTree(freqMap) {
+    let nodes = Object.entries(freqMap).map(([char, freq]) => new HuffmanNode(char, freq));
 
     while (nodes.length > 1) {
-        nodes.sort((a, b) => a.freq - b.freq);
+        nodes.sort((a, b) => a.freq - b.freq); // Sort nodes by frequency
+
         let left = nodes.shift();
         let right = nodes.shift();
-        let newNode = { char: null, freq: left.freq + right.freq, left, right };
+
+        let newNode = new HuffmanNode(null, left.freq + right.freq);
+        newNode.left = left;
+        newNode.right = right;
+
         nodes.push(newNode);
     }
 
     return nodes[0];
 }
 
-function generateExplanation(tree) {
-    return "<p>Huffman tree generated. Each leaf represents a character.</p>";
-}
+// Function to Generate Huffman Codes
+function generateHuffmanCodes(root, code = "", huffmanMap = {}) {
+    if (root == null) return;
 
-function drawHuffmanTree(tree) {
-    let canvas = document.getElementById('huffmanTreeCanvas');
-    let ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    function drawNode(node, x, y, level) {
-        if (!node) return;
-
-        ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.arc(x, y, 20, 0, 2 * Math.PI);
-        ctx.fill();
-        ctx.fillStyle = "white";
-        ctx.textAlign = "center";
-        ctx.fillText(node.char || "*", x, y + 5);
-
-        if (node.left) {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.lineTo(x - 50 / level, y + 50);
-            ctx.stroke();
-            drawNode(node.left, x - 50 / level, y + 50, level + 1);
-        }
-
-        if (node.right) {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.lineTo(x + 50 / level, y + 50);
-            ctx.stroke();
-            drawNode(node.right, x + 50 / level, y + 50, level + 1);
-        }
+    if (root.char !== null) {
+        huffmanMap[root.char] = code;
     }
 
-    drawNode(tree, canvas.width / 2, 50, 1);
+    generateHuffmanCodes(root.left, code + "0", huffmanMap);
+    generateHuffmanCodes(root.right, code + "1", huffmanMap);
+
+    return huffmanMap;
+}
+
+// Function to Start the Game
+function startHuffmanGame() {
+    let inputText = document.getElementById("userInput").value;
+    if (inputText.trim() === "") {
+        alert("Please enter some text to generate Huffman codes!");
+        return;
+    }
+
+    // Frequency Calculation
+    let freqMap = {};
+    for (let char of inputText) {
+        freqMap[char] = (freqMap[char] || 0) + 1;
+    }
+
+    let root = buildHuffmanTree(freqMap);
+    let huffmanCodes = generateHuffmanCodes(root);
+
+    // Display Results
+    let outputDiv = document.getElementById("huffmanOutput");
+    outputDiv.innerHTML = "<h3>Huffman Codes:</h3><ul>";
+    for (let [char, code] of Object.entries(huffmanCodes)) {
+        outputDiv.innerHTML += `<li>${char}: ${code}</li>`;
+    }
+    outputDiv.innerHTML += "</ul>";
 }
