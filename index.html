@@ -4,36 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huffman Coding</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
         <h1 class="rainbow-text">Huffman Coding Algorithm</h1>
-        <p class="intro-text">Explore Huffman Coding, a popular lossless data compression technique.</p>
-
-        <!-- Navigation Buttons -->
-        <div class="nav-buttons">
-            <button onclick="showSection('game')">Start Game</button>
-            <button onclick="showSection('about')">About Huffman Coding</button>
-            <button onclick="showSection('time-complexity')">Time Complexity Analysis</button>
-            <button onclick="showSection('real-time')">Real-Time Applications</button>
+        <p>Explore Huffman Coding, a popular lossless data compression technique.</p>
+        
+        <div class="buttons">
+            <button onclick="showPage('game')">Start Game</button>
+            <button onclick="showPage('about')">About Huffman Coding</button>
+            <button onclick="showPage('timeComplexity')">Time Complexity Analysis</button>
+            <button onclick="showPage('realTimeApplications')">Real-Time Applications</button>
         </div>
 
         <!-- Start Game Section -->
-        <div id="game" class="content-section hidden">
+        <div id="game" class="page">
             <h2 class="rainbow-text">Huffman Coding Game</h2>
-            <p>Enter a string below to generate Huffman Codes:</p>
-            <input type="text" id="userInput" placeholder="Enter text here">
-            <button onclick="startHuffmanGame()">Generate Huffman Codes</button>
-            <div id="huffmanOutput"></div>
+            <label for="inputString">Enter a string:</label>
+            <input type="text" id="inputString">
+            <button onclick="generateHuffmanCode()">Generate Huffman Code</button>
+            <div id="output"></div>
         </div>
 
         <!-- About Huffman Coding -->
-        <div id="about" class="content-section hidden">
+        <div id="about" class="page">
             <h2 class="rainbow-text">About Huffman Coding</h2>
-            <p>Huffman coding is a lossless data compression algorithm. It assigns variable-length codes to input characters based on their frequencies. More frequent characters receive shorter codes, while less frequent ones receive longer codes.</p>
-
+            <p>
+                Huffman coding is a lossless data compression algorithm. 
+                The idea is to assign variable-length codes to input characters based on their frequencies.
+            </p>
+            
             <h3>Example</h3>
             <p>Consider the following character frequencies:</p>
             <ul>
@@ -44,12 +46,7 @@
                 <li>E: 16</li>
                 <li>F: 45</li>
             </ul>
-            <p>The Huffman Tree is built as follows:</p>
-            <ol>
-                <li>Combine the two lowest frequency nodes (A and B) into a new node.</li>
-                <li>Repeat the process until only one node remains (the root of the tree).</li>
-                <li>Assign binary codes (0,1) to traverse the tree.</li>
-            </ol>
+            <p>The Huffman tree is built by combining the two lowest frequency nodes iteratively.</p>
 
             <h3>Advantages</h3>
             <ul>
@@ -67,32 +64,28 @@
         </div>
 
         <!-- Time Complexity Analysis -->
-        <div id="time-complexity" class="content-section hidden">
+        <div id="timeComplexity" class="page">
             <h2 class="rainbow-text">Time Complexity Analysis</h2>
-            <ul>
-                <li><strong>Best Case:</strong> O(n log n) - When characters have uniform frequency.</li>
-                <li><strong>Average Case:</strong> O(n log n) - Constructing Huffman Tree takes priority queue operations.</li>
-                <li><strong>Worst Case:</strong> O(n log n) - When all characters have different frequencies.</li>
-            </ul>
+            <p><strong>Best Case:</strong> O(n log n) (when frequencies are balanced).</p>
+            <p><strong>Average Case:</strong> O(n log n).</p>
+            <p><strong>Worst Case:</strong> O(n log n) (when all characters have different frequencies).</p>
         </div>
 
         <!-- Real-Time Applications -->
-        <div id="real-time" class="content-section hidden">
+        <div id="realTimeApplications" class="page">
             <h2 class="rainbow-text">Real-Time Applications</h2>
-            <button onclick="showSection('text-compression')">Text-Based Compression</button>
-            <button onclick="showSection('image-compression')">Image Compression</button>
+            <button onclick="showSubPage('textCompression')">Text-Based Compression</button>
+            <button onclick="showSubPage('imageCompression')">Image Compression</button>
+        </div>
 
-            <!-- Text-Based Compression -->
-            <div id="text-compression" class="content-section hidden">
-                <h3>Text-Based Compression</h3>
-                <p>Huffman coding is widely used in file compression formats like ZIP and GZIP.</p>
-            </div>
+        <div id="textCompression" class="page">
+            <h3 class="rainbow-text">Text-Based Compression</h3>
+            <p>Huffman coding is widely used in text file compression such as ZIP, GZIP, and more.</p>
+        </div>
 
-            <!-- Image Compression -->
-            <div id="image-compression" class="content-section hidden">
-                <h3>Image Compression</h3>
-                <p>Huffman coding is used in JPEG image compression to encode pixel data efficiently.</p>
-            </div>
+        <div id="imageCompression" class="page">
+            <h3 class="rainbow-text">Image Compression</h3>
+            <p>It is used in lossless image compression formats like PNG.</p>
         </div>
     </div>
 </body>
