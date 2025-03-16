@@ -1,52 +1,45 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     text-align: center;
-    padding: 20px;
+    background: linear-gradient(90deg, #ff4b4b, #ffac41, #fdfd96, #77dd77, #779ecb, #b19cd9);
+    color: white;
 }
 
 .container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: auto;
-}
-
-h1 {
-    font-size: 28px;
-}
-
-.rainbow-text {
-    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.buttons button {
-    display: block;
     width: 80%;
-    margin: 10px auto;
-    padding: 10px;
-    font-size: 18px;
+    margin: auto;
+    padding: 20px;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    margin: 10px;
     border: none;
-    background-color: #4CAF50;
-    color: white;
+    background-color: white;
+    color: black;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
     border-radius: 5px;
 }
 
-.buttons button:hover {
-    background-color: #45a049;
+button:hover {
+    background-color: #ddd;
 }
 
-.page {
+/* Hidden Sections */
+.hidden {
     display: none;
-    padding: 20px;
 }
 
-canvas {
-    border: 1px solid black;
-    margin-top: 10px;
+/* Rainbow Text Effect */
+.rainbow-text {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
