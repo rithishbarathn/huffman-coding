@@ -1,76 +1,51 @@
-function showSection(sectionId) {
-    document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.add('hidden');
-    });
-    document.getElementById(sectionId).classList.remove('hidden');
+// Function to switch between pages
+function showPage(pageId) {
+    let pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.style.display = 'none');
+    document.getElementById(pageId).style.display = 'block';
 }
 
-// Huffman Node Class
-class HuffmanNode {
-    constructor(char, freq) {
-        this.char = char;
-        this.freq = freq;
-        this.left = null;
-        this.right = null;
-    }
+// Function to display sub-pages under Real-Time Applications
+function showSubPage(subPageId) {
+    document.getElementById('textCompression').style.display = 'none';
+    document.getElementById('imageCompression').style.display = 'none';
+    document.getElementById(subPageId).style.display = 'block';
 }
 
-// Function to Build Huffman Tree
-function buildHuffmanTree(freqMap) {
-    let nodes = Object.entries(freqMap).map(([char, freq]) => new HuffmanNode(char, freq));
-
-    while (nodes.length > 1) {
-        nodes.sort((a, b) => a.freq - b.freq); // Sort nodes by frequency
-
-        let left = nodes.shift();
-        let right = nodes.shift();
-
-        let newNode = new HuffmanNode(null, left.freq + right.freq);
-        newNode.left = left;
-        newNode.right = right;
-
-        nodes.push(newNode);
-    }
-
-    return nodes[0];
-}
-
-// Function to Generate Huffman Codes
-function generateHuffmanCodes(root, code = "", huffmanMap = {}) {
-    if (root == null) return;
-
-    if (root.char !== null) {
-        huffmanMap[root.char] = code;
-    }
-
-    generateHuffmanCodes(root.left, code + "0", huffmanMap);
-    generateHuffmanCodes(root.right, code + "1", huffmanMap);
-
-    return huffmanMap;
-}
-
-// Function to Start the Game
-function startHuffmanGame() {
-    let inputText = document.getElementById("userInput").value;
-    if (inputText.trim() === "") {
-        alert("Please enter some text to generate Huffman codes!");
+// Function to generate Huffman Code
+function generateHuffmanCode() {
+    let input = document.getElementById('inputString').value;
+    if (input.length === 0) {
+        alert('Please enter a string.');
         return;
     }
-
-    // Frequency Calculation
+    
     let freqMap = {};
-    for (let char of inputText) {
+    for (let char of input) {
         freqMap[char] = (freqMap[char] || 0) + 1;
     }
 
-    let root = buildHuffmanTree(freqMap);
-    let huffmanCodes = generateHuffmanCodes(root);
+    let nodes = Object.keys(freqMap).map(char => ({ char, freq: freqMap[char], left: null, right: null }));
 
-    // Display Results
-    let outputDiv = document.getElementById("huffmanOutput");
-    outputDiv.innerHTML = "<h3>Huffman Codes:</h3><ul>";
-    for (let [char, code] of Object.entries(huffmanCodes)) {
-        outputDiv.innerHTML += `<li>${char}: ${code}</li>`;
+    while (nodes.length > 1) {
+        nodes.sort((a, b) => a.freq - b.freq);
+        let left = nodes.shift();
+        let right = nodes.shift();
+        let newNode = { char: null, freq: left.freq + right.freq, left, right };
+        nodes.push(newNode);
     }
-    outputDiv.innerHTML += "</ul>";
+
+    let huffmanCodes = {};
+    function generateCodes(node, code = "") {
+        if (!node) return;
+        if (node.char) huffmanCodes[node.char] = code;
+        generateCodes(node.left, code + "0");
+        generateCodes(node.right, code + "1");
+    }
+    
+    generateCodes(nodes[0]);
+
+    let encodedString = input.split("").map(char => huffmanCodes[char]).join("");
+    let outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = `<p>Encoded String: <strong>${encodedString}</strong></p><p>Huffman Codes: ${JSON.stringify(huffmanCodes)}</p>`;
 }
