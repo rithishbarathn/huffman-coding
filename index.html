@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Huffman Coding Algorithm</h1>
+        <h1 class="rainbow-text">Huffman Coding Algorithm</h1>
         <p>Explore Huffman Coding, a popular lossless data compression technique.</p>
         
         <div class="buttons">
@@ -23,7 +23,7 @@
             <input type="text" id="inputString">
             <button onclick="generateHuffmanTree()">Generate Huffman Tree</button>
             <div id="treeExplanation"></div>
-            <canvas id="huffmanTreeCanvas"></canvas>
+            <canvas id="huffmanTreeCanvas" width="600" height="400"></canvas>
         </div>
         
         <div id="about" class="page" style="display:none;">
@@ -56,7 +56,9 @@
         
         <div id="timeComplexity" class="page" style="display:none;">
             <h2>Time Complexity Analysis</h2>
-            <p>Building the Huffman tree has a time complexity of O(n log n) due to sorting. Encoding and decoding each character takes O(1), so the overall process is efficient for large inputs.</p>
+            <p><strong>Best Case:</strong> O(n log n) (when frequencies are balanced).</p>
+            <p><strong>Average Case:</strong> O(n log n).</p>
+            <p><strong>Worst Case:</strong> O(n log n) (when all characters have different frequencies).</p>
         </div>
         
         <div id="realTimeApplications" class="page" style="display:none;">
